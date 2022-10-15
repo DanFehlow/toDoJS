@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Roboto Slab";
+}
+
+.container {
+  grid: auto / 100%;
+}
+body {
+  background-color: rgb(27, 25, 25);
+}
+
+.wrapper {
+  position: relative;
+  max-width: 100vh;
+  height: 100%;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  top: 50px;
+}
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#form-button {
+  margin-top: 24px;
+  margin-bottom: 50px;
+  background-color: #ff9000;
+  width: 340px;
+  height: 56px;
+  font-size: 16px;
+  border-radius: 10px;
+  font-family: "Roboto Slab";
+  line-height: 21px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+}
+#tasks,
+.written-tasks,
+.input-form,
+#inserted-tasks {
+  display: flex;
+  /* position: relative; */
+  flex-direction: column;
+  gap: 08px;
+  width: 100%;
+}
+#tasks input,
+.written-tasks input,
+.input-form,
+.mudar,
+#inserted-tasks input {
+  display: flex;
+  padding: 18px 0 18px 52px;
+  background-color: #232129;
+  border-radius: 10px;
+  width: 100%;
+  border: none;
+  color: rgb(226, 138, 6);
+  font-size: 16px;
+  box-sizing: border-box;
+  font-family: "Roboto Slab";
+}
+
+#tasks input:focus,
+.written-tasks input:focus,
+#inserted-tasks input:focus {
+  outline: none !important;
+  border: 1px solid #ff9000;
+  box-shadow: none;
+}
+
+.checkboxtask,
+#task-checkbox {
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  transform: translateY(4%);
+  left: 0px;
+}
+
+#done-button {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+div.color-done {
+  color: rgb(170, 237, 70);
+}
