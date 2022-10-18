@@ -3,39 +3,47 @@
 // 3 - Tentar matar o atualizar a tela e o removeChild --> Ok
 // 4 - Para a cor do check, mudar a classe e não a cor. --> Ok
 
-// let banco = []
-const getBanco = () => JSON.parse(localStorage.getItem('mudar'))
-const setBanco = (banco) => localStorage.setItem('mudar', JSON.stringify(banco))
+let banco = []
+
+const getBanco = () => JSON.parse(localStorage.getItem('todo')) ?? []
+const setBanco = (banco) => localStorage.setItem('todo', JSON.stringify(banco))
 
 const criarItem = (evento) => {
   const tecla = evento.key
   const texto = evento.target.value
   const taskQuantity = document.querySelectorAll('#task-checkbox').length
   const taskNextQuantity = taskQuantity + 1
-  // banco.forEach((item) => criarItem(item.texto))
   // if (!texto) {
   //   return alert('Por favor, escreva sua tarefa')
+  // }
 
   if (tecla === 'Enter') {
     evento.target.value = ''
     console.log('taskQuantity', taskQuantity)
     const newTask = document.createElement('div')
     newTask.innerHTML = `
-  <div class="mudar">
-    <div class="checkboxtask" id="task-checkbox">
-        <input type="checkbox" name=""
-        id="done-button-${taskNextQuantity}"
-        onclick="doneButton(${taskNextQuantity})"
-        >
+    <div class="mudar">
+      <div class="checkboxtask" id="task-checkbox">
+          <input type="checkbox" name=""
+          id="done-button-${taskNextQuantity}"
+          onclick="doneButton(${taskNextQuantity})"/>
+          
+      </div>
+      <div id = "teste -${taskNextQuantity}" class = "written-tasks">${texto}</div>
     </div>
-        <div id = "teste -${taskNextQuantity}" class = "written-tasks">${texto}</div>
-  </div>      
-  `
+    `
     document.querySelector('.written-tasks').appendChild(newTask)
-    const banco = getBanco()
-    banco.push({ evento: mudar })
-    setBanco(banco)
   }
+}
+
+const atualizarTela = () => {
+  const banco = getBanco()
+  banco.push(document.getElementById(`teste -${taskNextQuantity}`))
+  setBanco(banco)
+  const history = getBanco()
+  history.forEach((newTask) => {
+    criarItem(newTask.texto)
+  })
 }
 
 const doneButton = (taskNextQuantity) => {
@@ -49,13 +57,6 @@ const doneButton = (taskNextQuantity) => {
     input.classList.remove('color-done')
   }
 }
-
-// const atualizarTela = () => {
-//   removeChild()
-//   history.forEach((banana) => {
-//     criarItem(banana.tarefa)
-//   })
-// }
 
 // const removeChild = () => {
 //   const parent = document.querySelector('.written-tasks')
