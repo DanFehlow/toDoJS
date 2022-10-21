@@ -97,4 +97,18 @@ body {
 
 div.color-done {
   color: rgb(170, 237, 70);
+  font-style: italic;
+}
+
+#trash-icon {
+  width: 20px;
+}
+
+button {
+  transform: translate(-70%, -25%);
+  border-radius: 25%;
+}
+
+button:hover {
+  width: 25px;
 }
