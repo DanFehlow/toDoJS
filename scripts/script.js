@@ -10,7 +10,7 @@ const criarItem = (tarefa) => {
   console.log('taskQuantity', taskQuantity)
   const newTask = document.createElement('div')
   newTask.innerHTML = `
-    <div class="mudar">
+    <div id="consolidated">
       <div class="checkboxtask" id="task-checkbox">
           <input type="checkbox" name=""
           id="done-button-${taskNextQuantity}"
@@ -18,7 +18,12 @@ const criarItem = (tarefa) => {
           />   
       </div>
       <div id = "teste -${taskNextQuantity}" class = "written-tasks">${tarefa}</div>
-      <button><img src="./icon/trash.png" alt="trash" id="trash-icon"/></button>
+      <button id="remove-button" 
+      onclick="removeButton()">
+        <img src="./icon/trash.png" 
+        alt="trash" 
+        id="trash-icon"/>
+      </button>
     </div>
     `
   document.querySelector('.written-tasks').appendChild(newTask)
@@ -63,5 +68,25 @@ const removeChild = () => {
   }
 }
 
+const removeHistory = (indice) => {
+  const banco = getBanco()
+  banco.splice(indice, 0)
+  setBanco(banco)
+  atualizarTela()
+}
+
+const removeButton = (evento) => {
+  const elemento = evento.target
+  console.log(elemento.type)
+  if (elemento.type === 'button') {
+    const indice = elemento.dataset.indice
+    removerItem(indice)
+  } else if (elemento.type === 'checkbox') {
+    const indice = elemento.dataset.indice
+    atualizarTela(indice)
+  }
+}
+
+document.addEventListener('click', removeButton)
 document.getElementById('tasks').addEventListener('keypress', insertTask)
 atualizarTela()

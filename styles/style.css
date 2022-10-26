@@ -58,7 +58,7 @@ body {
 #tasks input,
 .written-tasks input,
 .input-form,
-.mudar,
+#consolidated,
 #inserted-tasks input {
   display: flex;
   padding: 18px 0 18px 52px;
@@ -104,11 +104,11 @@ div.color-done {
   width: 20px;
 }
 
-button {
+#remove-button {
   transform: translate(-70%, -25%);
   border-radius: 25%;
 }
 
-button:hover {
+#remove-button:hover {
   width: 25px;
 }
