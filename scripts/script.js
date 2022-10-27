@@ -18,8 +18,8 @@ const criarItem = (tarefa) => {
           />   
       </div>
       <div id = "teste -${taskNextQuantity}" class = "written-tasks">${tarefa}</div>
-      <button id="remove-button" 
-      onclick="removeButton()">
+      <button id="remove-button -${taskNextQuantity}" 
+      onclick="removeButton(${taskNextQuantity})">
         <img src="./icon/trash.png" 
         alt="trash" 
         id="trash-icon"/>
@@ -68,25 +68,20 @@ const removeChild = () => {
   }
 }
 
-const removeHistory = (indice) => {
+const removeHistory = (taskNextQuantity) => {
   const banco = getBanco()
-  banco.splice(indice, 0)
+  const button = document.getElementById(`remove-button -${taskNextQuantity}`)
+  banco.splice(button, 1)
   setBanco(banco)
-  atualizarTela()
+  atualizarTela(button)
 }
 
-const removeButton = (evento) => {
-  const elemento = evento.target
-  console.log(elemento.type)
-  if (elemento.type === 'button') {
-    const indice = elemento.dataset.indice
-    removerItem(indice)
-  } else if (elemento.type === 'checkbox') {
-    const indice = elemento.dataset.indice
-    atualizarTela(indice)
-  }
+const removeButton = (taskNextQuantity) => {
+  const button = document.getElementById(`remove-button -${taskNextQuantity}`)
+  removeHistory(button)
+  atualizarTela(button)
 }
 
-document.addEventListener('click', removeButton)
+// document.addEventListener('click', removeHistory)
 document.getElementById('tasks').addEventListener('keypress', insertTask)
 atualizarTela()
